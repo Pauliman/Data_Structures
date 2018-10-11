@@ -2,7 +2,7 @@ package queue_simulation;
 
 import java.util.Arrays;
 
-public class MyQueue<T> implements Cloneable {
+public class MyQueue<T> implements Cloneable, Comparable<MyQueue<T>> {
 	
 	// +++++++++++++++++++++++++++++ Instance Fields ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -134,11 +134,10 @@ public class MyQueue<T> implements Cloneable {
 	} // end of toString()
 	
 	
-	@SuppressWarnings("unchecked")
-	public int compareTo(Object obj) {
-		if(obj == null || !obj.getClass().getName().equals(this.getClass().getName())) return 1;
-		MyQueue<T> test = (MyQueue<T>) obj;
-		if(this.getSize() == test.getSize()) return 0;
-		return (this.getSize() > test.getSize()) ? 1 : -1;		
+	@Override
+	public int compareTo(MyQueue<T> obj) {
+		if(obj == null || !obj.getClass().getName().equals(this.getClass().getName())) return 1;				
+		if(this.getSize() == obj.getSize()) return 0;
+		return (this.getSize() > obj.getSize()) ? 1 : -1;		
 	} // end of compareTo()
 } // end of class
